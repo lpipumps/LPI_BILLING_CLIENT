@@ -1,0 +1,21 @@
+.invoice_display{
+    display: flex;
+    width: 100%;
+}
+@media print {
+    .invoice_display .MuiTableCell-root:last-child, /* Hides last table cell (Action column) */
+    .invoice_display .MuiTableCell-head:last-child, /* Hides last table header (Action column) */
+    .invoice_display .MuiIconButton-root { /* Hides the icons inside the last column */
+      display: none !important;
+    }
+    .table-actions{
+        display: none !important;
+    }
+  }
+ .table_container{
+    width: 100%
+ }
+ .invoice_display .table-actions{
+    display: flex; 
+    gap: 10px;
+}

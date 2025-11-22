@@ -1,0 +1,222 @@
+.invoice-container {
+    width: 90%;
+    
+    
+    padding: 20px;
+    border: 1px solid #000;
+    font-family: Arial, sans-serif;
+    
+  }
+  .invoice-header {
+  background-color: #f5f5f5;
+  }
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .header-left {
+    flex:1;
+  }
+
+  .header_right {
+    text-align: right;
+
+  }
+  .invoice-header h2 {
+    margin: 0;
+  font-size: 24px;
+  }
+  
+  .invoice-header p {
+    margin: 2px 0;
+  }
+  
+  .invoice-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap:20px;
+    position: relative;
+  }
+  
+  .invoice-info, .transport-info {
+    width: 48%;
+  }
+  
+  .invoice-info p, .transport-info p {
+    margin: 2px 0;
+  }
+  
+  .invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .invoice-table th, .invoice-table td {
+    border: 1px solid #000;
+    padding: 5px;
+    text-align: left;
+  }
+  
+  .invoice-summary {
+    margin-top: 20px;
+  }
+  
+  .invoice-summary p {
+    font-weight: bold;
+  }
+  
+  .invoice-footer {
+    text-align: center;
+    font-size: x-small;
+    text-align: left;
+  }
+  .input-field {
+    flex-grow: 1;
+  }
+  .logo-container {
+    margin-right: 10;
+    margin-top:0px;
+  }
+  
+  .logo {
+    height: 80px;
+    width: auto;
+  }
+  @media print {
+    .print-button-container {
+      display: none;
+    }
+    .navbar-container {
+      display: none;
+    }
+    
+    
+  }
+  .horizontal{
+    border:1px solid #000;
+    margin: 0%;
+
+  }
+  .invoice_details {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .invoice_details_set1, .invoice_details_set2 {
+    flex: 1;
+  }
+  
+  
+  .watermark-container {
+  position: relative;
+  background: #fff;
+}
+
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem; /* Adjust size as needed */
+  color: rgba(0, 0, 0, 0.1); /* Light gray for watermark effect */
+  text-transform: uppercase;
+  font-weight: bold;
+  white-space: nowrap;
+  z-index: -1; /* Send watermark to the background */
+  pointer-events: none; /* Make it non-interactive */
+}
+
+.invoice-container {
+  position: relative;
+ 
+  
+  
+}
+.segment{
+  display: flex;
+}
+.information{
+  font-size: x-small;
+}
+.receiever_details,
+.consignee_details {
+  flex: 1; /* Equal width for both sections */
+}
+
+.receiver-consignee-container {
+  display: flex;
+  gap: 10px; /* Add space between sections */
+}
+
+.vertical_line {
+  width: 1px;
+  background-color: #000; /* Vertical line color */
+  height: auto; /* Adjusts to container height */
+  align-self: stretch; /* Ensures full height */
+  margin: 0 auto;
+}
+
+.receiever_details .text-field,
+.consignee_details .text-field {
+  margin-bottom: 10px; /* Spacing between text fields */
+}
+
+h5 {
+  margin: 0px 0; /* Minimal margin for titles inside the header */
+  text-align: center;
+  font-style: bold;
+}
+
+.invoice_details h5 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.shipping_details_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2px 0; /* Reduce padding to minimal */
+  margin: 0;
+}
+
+.details_left {
+  flex: 1;
+  text-align: left;
+  margin-right: 10px; /* Optional spacing */
+}
+
+.details_right {
+  flex: 1;
+  text-align: right;
+  margin-left: 10px; /* Optional spacing */
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: repeat(3, auto);
+}
+
+.grid-item {
+  padding: 5px;
+  border: 1px solid #000000;
+}
+.css-9j73qj-MuiInputBase-input-MuiInput-input{
+  font-size: medium !important;
+}
+.generated{
+  align-items: center;
+  text-align: center;
+}
+.hlabel1,.hlabel2,.hlabel3,.hlabel4{
+  border-bottom: 0px;
+
+}
+.hlabel1,.hlabel3,.hlabel5{
+  border-right: 0px;
+}

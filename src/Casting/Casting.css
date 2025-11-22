@@ -1,0 +1,15 @@
+.admin_form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adjust this value to set the desired space between elements */
+    align-items: center; /* Optional: center align the items */
+    padding: 20px; /* Optional: add padding around the form */
+    background-color: #2c2c22;
+    border-radius: 7px;
+    margin-top: 50px;
+    margin-left: 150px;
+}
+.title{
+    color: #ffffffff;
+    font-family:Arial, Helvetica, sans-serif;
+}

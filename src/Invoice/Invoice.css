@@ -1,0 +1,121 @@
+.watermark-container {
+    position: relative;
+    background: #fff;
+  }
+  
+  .watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem; /* Adjust size as needed */
+    color: rgba(0, 0, 0, 0.1); /* Light gray for watermark effect */
+    text-transform: uppercase;
+    font-weight: bold;
+    white-space: nowrap;
+    z-index: -1; /* Send watermark to the background */
+    pointer-events: none; /* Make it non-interactive */
+  }
+  @media print {
+    .hide-print {
+      display: none!important;
+    }}
+    
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .main-column {
+      border: 1px solid #070707;
+    border-right: 0px;
+    border-bottom: 0px;
+      
+    }
+  
+    
+    .second-column {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+    }
+    
+    .sub-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(5, 1fr);  
+      width: 100%;
+      height: 100%;
+    }
+    
+    .sub-grid-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+    }
+
+.tb-container {
+  border-bottom:1px solid black;
+  border-right:1px solid black;
+  border-left:1px solid black;
+  border-radius: 0px !important;
+}
+
+.css-yeh1yo-MuiPaper-root-MuiTableContainer-root {
+  border-radius: 0px !important;
+}
+
+.css-elneag-MuiTableCell-root {
+  border-bottom: 1px solid black !important;
+}
+
+.css-6u92iu-MuiTableCell-root {
+  border-bottom: 0px !important;
+}
+.css-vnak7p-MuiPaper-root-MuiTableContainer-root{
+  border-radius: 0% !important;
+}
+.css-fsf2jt 
+{
+  border-radius: 0% !important;
+}
+.table-footer {
+  position: sticky;
+  margin-bottom: 0%;
+  width: 100%;
+  background-color: white;
+  z-index: 0; /* Keeps footer on top */
+}
+.css-60g2r2-MuiPaper-root-MuiTableContainer-root {
+  border-left: 1px solid black !important;
+  --Paper-shadow:0px !important;
+}
+
+.label1,.label3,.label5,.label7,.label9{
+  border-bottom: 0px;
+  
+
+}
+.label2,.label4,.label6,.label8,.label10
+{
+  border-bottom: 0px;
+  border-left: 0px;
+
+}
+.label12{
+  border-left: 0px;
+}
+@media print{
+  .main-column,
+  .label1,
+  .label2 {
+    border-top: 0px !important; /* Remove the top border when printing */
+  }
+
+}
+.label1,.label3,.label5,.label7,.label9,.label11
+{
+margin-right: -30px;
+}

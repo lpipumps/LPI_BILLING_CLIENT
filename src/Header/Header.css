@@ -1,0 +1,99 @@
+/* General styling for header */
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px;
+    
+    font-size: 14px;
+  }
+  
+  .header-content {
+    display: flex;
+    width: 100%; /* Ensure the header content takes up full width */
+    justify-content: space-between;
+    align-items: center;
+}
+  .tax_invoice{
+    align-items: center;
+  }
+  
+  .logo_container {
+    width: 21%
+  }
+  
+  .header-left {
+    text-align: center;
+    flex: 1;
+  }
+  
+  .header-left h4,
+  .header-left h2,
+  .header-left p {
+    margin: 6px 0;
+  }
+  
+  /* Print-specific styles */
+  @media print {
+    /* Set up A4 dimensions */
+    .print-container {
+      width: 210mm;
+      height: 297mm;
+      padding: 10mm;
+      box-sizing: border-box;
+    }
+  
+    /* Ensure logo and text fit on A4 */
+    .logo {
+      width: 100px;
+    }
+  
+    .invoice-header {
+      padding: 10px;
+      font-size: 12px; /* Smaller font size for print */
+    }
+  
+    /* Ensure no page breaks in header */
+    .invoice-header, .header-content {
+      page-break-inside: avoid;
+    }
+  
+    /* Hide any unnecessary screen-only content in print */
+    .screen-only {
+      display: none;
+    }
+  }
+  .mrfs{font-size: 14px; /* Adjust to match the image */
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px; /* Adjust for proper spacing */
+    margin: 0; /* Remove extra margins */
+    text-transform: uppercase; /* Ensure the text is in uppercase */
+    color: white; /* White text */
+    background-color: black; /* Black background */
+    padding: 5px 8px; /* Add padding to ensure proper spacing inside the background */
+    display: inline-block; }
+  .Lakshmi{
+    font-size:  30px; 
+    font-weight: bold;
+  }
+  /* Ensure the background color is applied during print */
+@media print {
+  .mrfs {
+      -webkit-print-color-adjust: exact; /* Chrome, Safari */
+      print-color-adjust: exact; /* Modern browsers */
+      background-color: black !important; /* Ensure background color is set */
+      color: white !important; /* Ensure text color is visible */
+  }
+}
+.header_right{
+  font-size: medium;
+  
+  
+}
+.tax_invoice{
+  font-size: 14px;
+}
+.address{
+  font-size: larger;
+
+}
