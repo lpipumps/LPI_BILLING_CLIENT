@@ -177,13 +177,13 @@ function Home() {
     invoiceItems.forEach((item, idx) => {
       console.log(idx+1)
       console.log(item)
-      if (!item.name || !item.hsncode || item.quantity == 0 || item.weight == 0 || item.rate == 0 || item.value == 0) {
+      if (!item.name || !item.hsncode || item.quantity == 0 ||  item.rate == 0 || item.value == 0) {
         errors.push(`Item ${idx + 1} has incomplete details`);
       }
     });
 
     if (InvoiceTotalquantity == null) errors.push("Total Quantity");
-    if (InvoiceTotalweight == null) errors.push("Total Weight");
+    
     if (invoicetotaltaxablevalue == null) errors.push("Taxable Value");
     if (invoiceCgst == null) errors.push("CGST %");
     if (invoiceSgst == null) errors.push("SGST %");
@@ -193,7 +193,7 @@ function Home() {
     if (invoiceIgstAmount == null) errors.push("IGST Amount");
     if (invoiceRounfoff == null) errors.push("Round Off");
     if (invoicegrandtotal == null) errors.push("Grand Total");
-    if (!invoicetotalinwords) errors.push("Total in Words");
+    if (invoicetotalinwords) errors.push("Total in Words");
 
     // ✅ Conditionally check eWay bill
     if (invoicegrandtotal > 100000 && !eway_bill_no) {

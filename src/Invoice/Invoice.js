@@ -27,9 +27,9 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
       si_no: 1,
       name: "",
       hsncode: 0,
-      quantity: 0,
-      weight: 0,
+      quantity:0,
       rate: 0,
+      per: "Nos",
       value: 0,
     },
   ]);
@@ -41,7 +41,7 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
 
   const toWords = new ToWords();
   const totalQuantity = items.reduce((total, item) => total + (item.quantity || 0), 0);
-  const totalWeight =parseFloat((items.reduce((total, item) => total + (item.weight || 0), 0)).toFixed(2));
+  
   
 
   const handleAddRow = (e) => {
@@ -56,8 +56,8 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
         name: "",
         hsncode: 0,
         quantity: 0,
-        weight: 0,
         rate: 0,
+        per: "Nos",
         value: 0,
         
       },
@@ -77,32 +77,22 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
 
   const handleInputChange = (index, field, value) => {
     const updatedItems = [...items];
-    const numericFields = ["quantity", "weight", "rate"];
+    const numericFields = ["quantity", "rate"];
   const parsedValue = numericFields.includes(field) ? Number(value) || 0 : value;
     updatedItems[index] = { ...updatedItems[index], [field]: parsedValue };
     
+    
 
-    // if (field === "weight" || field === "rate") {
-    //   const calculatedvalue =
-    //     updatedItems[index].weight * updatedItems[index].rate;
-    //   updatedItems[index].value = parseFloat(calculatedvalue.toFixed(2));
-    // }
-    if (field === "quantity" && updatedItems[index].unitWeight) {
+    if (field === "quantity" || field === "rate") {
      
       // Update the weight dynamically based on quantity
-      updatedItems[index].weight = updatedItems[index].unitWeight * value;
-      updatedItems[index].weight=parseFloat(updatedItems[index].weight.toFixed(2));
       
       const calculatedvalue =
-        updatedItems[index].weight * updatedItems[index].rate;
+        updatedItems[index].quantity * updatedItems[index].rate;
       updatedItems[index].value = parseFloat(calculatedvalue.toFixed(2));
     }
 
-    if (field === "weight" || field === "rate") {
-      const calculatedvalue =
-        updatedItems[index].weight * updatedItems[index].rate;
-      updatedItems[index].value = parseFloat(calculatedvalue.toFixed(2));
-    }
+    
     
 
 
@@ -149,7 +139,6 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
       onInvoiceChange(
         items,
         totalQuantity,
-        totalWeight,
         cgst,
         sgst,
         igst,
@@ -166,7 +155,7 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
   }, [
     items,
     totalQuantity,
-    totalWeight,
+    
     cgst,
     sgst,
     igst,
@@ -206,10 +195,10 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
       ...updatedItems[index],
       name: selectedProduct.casting_name,
       hsncode: selectedProduct.casting_hsn,
-      unitWeight: selectedProduct.casting_weight,
+      rate: selectedProduct.casting_weight,
     };
     if (updatedItems[index].quantity) {
-      updatedItems[index].weight = updatedItems[index].unitWeight * updatedItems[index].quantity;
+      updatedItems[index].value = updatedItems[index].quantity * updatedItems[index].rate;
     }
 
     setitems(updatedItems);
@@ -279,18 +268,18 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
                   fontSize: "1rem",
                 }}
               >
-                Weight(KGS)
+                Rate
               </TableCell>
               <TableCell
                 sx={{
                   padding: "2px",
                   borderRight: "1px solid black",
                   borderBottom: "1.2px solid black",
-                  width: "9%",
+                  width: "4%",
                   fontSize: "1rem",
                 }}
               >
-                Rate/Kg
+                per
               </TableCell>
               <TableCell
                 sx={{
@@ -444,11 +433,11 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
                 >
                   <TextField
                     variant="standard"
-                    value={parseFloat(item.weight).toFixed(2)}
+                    value={parseFloat(item.rate).toFixed(2)}
                     onChange={(e) =>
                       handleInputChange(
                         index,
-                        "weight",
+                        "rate",
                         (e.target.value) || 0
                       )
                     }
@@ -468,7 +457,7 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
                 >
                   <TextField
                     variant="standard"
-                    value={isViewMode ? viewitems[index]?.rate || 0 : items[index]?.rate || 0}
+                    value={isViewMode ? viewitems[index]?.per || 0 : items[index]?.per || 0}
                     sx={{ width: "40px" }}
                     InputProps={{
                       sx: { fontSize: "15px" },
@@ -477,7 +466,7 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
                     onChange={(e) =>
                       handleInputChange(
                         index,
-                        "rate",
+                        "per",
                         parseFloat(e.target.value) || 0
                       )
                     }
@@ -530,7 +519,7 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
                 Total :
               </TableCell>
               <TableCell sx={{ fontWeight: 'bold', borderRight: "1px solid black",paddingRight:'40px'  }}>{isViewMode?invoiceViewDetails.totalquantity:totalQuantity} Nos</TableCell>
-              <TableCell sx={{ fontWeight: 'bold', borderRight: "1px solid black",paddingRight:'14px' }}>{isViewMode?(parseFloat(invoiceViewDetails.totalweight|| 0).toFixed(2)):totalWeight.toFixed(2)} Kgs</TableCell>
+              
               
             </TableRow>
           

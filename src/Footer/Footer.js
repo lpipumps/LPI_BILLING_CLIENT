@@ -50,7 +50,7 @@ function Footer() {
             Certified that the particulars given above are true and correct.
           </p>
           <p className="certify">
-            For <b>LAKSHMI GRADE CASTINGS</b>
+            For <b>LAKSHMI PUMP INDUSTRIES</b>
           </p>
         </div>
 
