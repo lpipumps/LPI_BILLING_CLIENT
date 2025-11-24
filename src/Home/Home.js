@@ -183,7 +183,6 @@ function Home() {
     });
 
     if (InvoiceTotalquantity == null) errors.push("Total Quantity");
-    
     if (invoicetotaltaxablevalue == null) errors.push("Taxable Value");
     if (invoiceCgst == null) errors.push("CGST %");
     if (invoiceSgst == null) errors.push("SGST %");
@@ -193,7 +192,7 @@ function Home() {
     if (invoiceIgstAmount == null) errors.push("IGST Amount");
     if (invoiceRounfoff == null) errors.push("Round Off");
     if (invoicegrandtotal == null) errors.push("Grand Total");
-    if (invoicetotalinwords) errors.push("Total in Words");
+    if (!invoicetotalinwords) errors.push("Total in Words");
 
     // ✅ Conditionally check eWay bill
     if (invoicegrandtotal > 100000 && !eway_bill_no) {
@@ -214,7 +213,7 @@ function Home() {
     const billDetails = {
       invoice_no,
       invoice_date, state, state_code, transport_name, vehicle_number, date_of_supply, pono_date, eway_bill_no, receiver_name, receiver_address, receiver_gstin, receiver_state, receiver_state_code, consignee_name, consignee_address, consignee_gstin, consignee_state, consignee_state_code,
-      items: invoiceItems, totalquantity: InvoiceTotalquantity, totalweight: InvoiceTotalweight, cgst: invoiceCgst, sgst: invoiceSgst, igst: invoiceIgst, cgstamount: invoiceCgstAmount, sgstamount: invoiceSgstAmount, igstamount: invoiceIgstAmount, total_before_tax: invoicetotaltaxablevalue,
+      items: invoiceItems, totalquantity: InvoiceTotalquantity,  cgst: invoiceCgst, sgst: invoiceSgst, igst: invoiceIgst, cgstamount: invoiceCgstAmount, sgstamount: invoiceSgstAmount, igstamount: invoiceIgstAmount, total_before_tax: invoicetotaltaxablevalue,
       roundoff: invoiceRounfoff, grand_total: invoicegrandtotal, grand_total_words: invoicetotalinwords
 
 
@@ -263,10 +262,9 @@ function Home() {
     }, 10000);
   }, []);
 
-  const handleInvoiceData = (items, totalQuantity, totalWeight, cgst, sgst, igst, cgstAmount, sgstAmount, igstAmount, totaltaxablevalue, roundoffAdjustment, totalGrandAmount, totalinwords) => {
+  const handleInvoiceData = (items, totalQuantity, cgst, sgst, igst, cgstAmount, sgstAmount, igstAmount, totaltaxablevalue, roundoffAdjustment, totalGrandAmount, totalinwords) => {
     setInvoiceItems(items);
     setInvoiceTotalquantity(totalQuantity);
-    setInvoiceTotalweight(totalWeight);
     setInvoiceCgst(cgst);
     setInvoiceSgst(sgst);
     setInvoiceIgst(igst);

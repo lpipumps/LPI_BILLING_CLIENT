@@ -13,9 +13,10 @@
     }
   }
  .table_container{
-    width: 100%
+    width: 100%;
+    overflow-x: auto;
  }
  .invoice_display .table-actions{
     display: flex; 
-    gap: 10px;
+    gap: 15px;
 }

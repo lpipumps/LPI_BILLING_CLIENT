@@ -155,7 +155,6 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
   }, [
     items,
     totalQuantity,
-    
     cgst,
     sgst,
     igst,
