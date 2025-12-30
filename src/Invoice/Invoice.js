@@ -33,9 +33,7 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
       value: 0,
     },
   ]);
-  const [cgst, setCgst] = useState();
-  const [sgst, setSgst] = useState();
-  const [igst, setIgst] = useState();
+  
   const [totalInWords, setTotalInWords] = useState("");
   const [castingDetails, setcastingDetails] = useState([]);
 
@@ -104,11 +102,9 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
     (total, item) => total + (item.value || 0),
    0 
   ));
-  const cgstAmount = parseFloat(totalTaxableValue * cgst) / 100;
-  const sgstAmount = parseFloat(totalTaxableValue * sgst) / 100;
-  const igstAmount = parseFloat(totalTaxableValue * igst) / 100;
+  
   const totalGrandAmount =
-    parseFloat((totalTaxableValue + cgstAmount + sgstAmount + igstAmount).toFixed(2));
+    parseFloat((totalTaxableValue ).toFixed(2));
 
   const roundOffAmount = (amount) => {
     const rupee = Math.floor(amount);
@@ -133,18 +129,11 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
     });
     setTotalInWords(words);
   }, [roundedTotalGrandAmount]);
-
   useEffect(() => {
     if (onInvoiceChange) {
       onInvoiceChange(
         items,
         totalQuantity,
-        cgst,
-        sgst,
-        igst,
-        cgstAmount,
-        sgstAmount,
-        igstAmount,
         totalTaxableValue,
         roundoffAdjustment,
         roundedTotalGrandAmount,
@@ -155,12 +144,6 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
   }, [
     items,
     totalQuantity,
-    cgst,
-    sgst,
-    igst,
-    cgstAmount,
-    sgstAmount,
-    igstAmount,
     totalTaxableValue,
     roundoffAdjustment,
     totalGrandAmount,
@@ -569,105 +552,9 @@ function Invoice({invoiceViewDetails,viewitems,isViewMode, onInvoiceChange }) {
               
             </div>
             <div class="sub-grid-item label2" style={{display:"flex",justifyContent:"flex-end",paddingRight:"10px"}}><b>{isViewMode?(parseFloat(invoiceViewDetails.total_before_tax).toFixed(2)):totalTaxableValue.toFixed(2)}</b>&nbsp;&nbsp;</div>
-            <div class="sub-grid-item label3">
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: "0.95rem",
-                  fontWeight: "bold",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                Add.CGST:
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    flex: 1,
-                  }}
-                >
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <TextField
-                    variant="standard"
-                    value={isViewMode?invoiceViewDetails.cgst:cgst}
-                    onChange={(e) => setCgst(parseFloat(e.target.value) || 0)}
-                    sx={{ flex: "0 0 auto", width: "30px" }}
-                    InputProps={{ disableUnderline: true }}
-                  />
-                  %
-                </div>
-              </Typography>
-            </div>
-            <div class="sub-grid-item label4" style={{display:"flex",justifyContent:"flex-end",paddingRight:"20px"}}><b>{isViewMode?(parseFloat(invoiceViewDetails.cgstamount || 0.00).toFixed(2)):(cgstAmount?cgstAmount.toFixed(2): "0.00")}</b></div>
-            <div class="sub-grid-item label5">
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: "0.95rem",
-                  fontWeight: "bold",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                Add.SGST:
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    flex: 1,
-                  }}
-                >
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <TextField
-                    variant="standard"
-                    value={isViewMode?invoiceViewDetails.sgst:sgst}
-                    onChange={(e) => setSgst(parseFloat(e.target.value) || 0)}
-                    sx={{ flex: "0 0 auto", width: "30px" }}
-                    InputProps={{ disableUnderline: true }}
-                  />
-                  %
-                </div>
-              </Typography>
-            </div>
-            <div class="sub-grid-item label6" style={{display:"flex",justifyContent:"flex-end",paddingRight:"20px"}}><b>{isViewMode?(parseFloat(invoiceViewDetails.sgstamount|| 0.00).toFixed(2)):(sgstAmount?sgstAmount.toFixed(2): "0.00")}</b></div>
-            <div class="sub-grid-item label7">
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: "0.95rem",
-                  fontWeight: "bold",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                Add.IGST:
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    flex: 1,
-                  }}
-                >
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <TextField
-                    variant="standard"
-                    value={isViewMode?invoiceViewDetails.igst:igst}
-                    onChange={(e) => setIgst(parseFloat(e.target.value) || 0)}
-                    sx={{ flex: "0 0 auto", width: "30px" }}
-                    InputProps={{ disableUnderline: true }}
-                  />
-                  %
-                </div>
-              </Typography>
-            </div>
-            <div class="sub-grid-item label8" style={{display:"flex",justifyContent:"flex-end",paddingRight:"10px"}}><b>{isViewMode?(parseFloat(invoiceViewDetails.igstamount | 0.00).toFixed(2)):(igstAmount?igstAmount.toFixed(2): "0.00")}</b>&nbsp;&nbsp;</div>
+            
+           
+            
             <div class="sub-grid-item label9" >
               <Typography
                 variant="body1"

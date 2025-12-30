@@ -45,12 +45,6 @@ function Home() {
   const [invoiceItems, setInvoiceItems] = useState([]);
   const [InvoiceTotalweight, setInvoiceTotalweight] = useState(0);
   const [InvoiceTotalquantity, setInvoiceTotalquantity] = useState(0);
-  const [invoiceCgst, setInvoiceCgst] = useState(0);
-  const [invoiceSgst, setInvoiceSgst] = useState(0);
-  const [invoiceIgst, setInvoiceIgst] = useState(0);
-  const [invoiceCgstAmount, setInvoiceCgstAmount] = useState(0);
-  const [invoiceSgstAmount, setInvoiceSgstAmount] = useState(0);
-  const [invoiceIgstAmount, setInvoiceIgstAmount] = useState(0);
   const [invoicetotaltaxablevalue, setInvoicetotaltaxablevalue] = useState(0);
   const [invoicegrandtotal, setInvoicegrandtotal] = useState(0);
   const [invoicetotalinwords, setInvoicetotalinwords] = useState(0);
@@ -184,12 +178,7 @@ function Home() {
 
     if (InvoiceTotalquantity == null) errors.push("Total Quantity");
     if (invoicetotaltaxablevalue == null) errors.push("Taxable Value");
-    if (invoiceCgst == null) errors.push("CGST %");
-    if (invoiceSgst == null) errors.push("SGST %");
-    if (invoiceIgst == null) errors.push("IGST %");
-    if (invoiceCgstAmount == null) errors.push("CGST Amount");
-    if (invoiceSgstAmount == null) errors.push("SGST Amount");
-    if (invoiceIgstAmount == null) errors.push("IGST Amount");
+    
     if (invoiceRounfoff == null) errors.push("Round Off");
     if (invoicegrandtotal == null) errors.push("Grand Total");
     if (!invoicetotalinwords) errors.push("Total in Words");
@@ -209,15 +198,13 @@ function Home() {
     setErrorMessages(errors);
     setOpenErrorDialog(true);
     return;
-  }
+   }
     const billDetails = {
-      invoice_no,
-      invoice_date, state, state_code, transport_name, vehicle_number, date_of_supply, pono_date, eway_bill_no, receiver_name, receiver_address, receiver_gstin, receiver_state, receiver_state_code, consignee_name, consignee_address, consignee_gstin, consignee_state, consignee_state_code,
-      items: invoiceItems, totalquantity: InvoiceTotalquantity,  cgst: invoiceCgst, sgst: invoiceSgst, igst: invoiceIgst, cgstamount: invoiceCgstAmount, sgstamount: invoiceSgstAmount, igstamount: invoiceIgstAmount, total_before_tax: invoicetotaltaxablevalue,
+      invoice_no,invoice_date, state, state_code, transport_name, vehicle_number, date_of_supply, pono_date, eway_bill_no, receiver_name, receiver_address, receiver_gstin, receiver_state, receiver_state_code, consignee_name, consignee_address, consignee_gstin, consignee_state, consignee_state_code,
+      items: invoiceItems, totalquantity: InvoiceTotalquantity,total_before_tax: invoicetotaltaxablevalue,
       roundoff: invoiceRounfoff, grand_total: invoicegrandtotal, grand_total_words: invoicetotalinwords
-
-
     };
+    console.log("Bill Details to be saved:", billDetails.items);
     try {
       // Call the addnewbill service to save the bill details
       const response = await addnewbill(billDetails);
@@ -265,12 +252,7 @@ function Home() {
   const handleInvoiceData = (items, totalQuantity, cgst, sgst, igst, cgstAmount, sgstAmount, igstAmount, totaltaxablevalue, roundoffAdjustment, totalGrandAmount, totalinwords) => {
     setInvoiceItems(items);
     setInvoiceTotalquantity(totalQuantity);
-    setInvoiceCgst(cgst);
-    setInvoiceSgst(sgst);
-    setInvoiceIgst(igst);
-    setInvoiceCgstAmount(cgstAmount);
-    setInvoiceSgstAmount(sgstAmount);
-    setInvoiceIgstAmount(igstAmount);
+    
     setInvoicetotaltaxablevalue(totaltaxablevalue);
     setInvoicegrandtotal(totalGrandAmount);
     setInvoicetotalinwords(totalinwords);
@@ -320,7 +302,7 @@ function Home() {
                         variant="body1"
                         sx={{ fontSize: "0.95rem", fontWeight: "bold" }}
                       >
-                        Invoice No:
+                        GatePass No:
                       </Typography>
                       <TextField
                         variant="standard"
@@ -334,7 +316,7 @@ function Home() {
                         variant="body1"
                         sx={{ fontSize: "0.95rem", fontWeight: "bold" }}
                       >
-                        Invoice Date:
+                        GatePass Date:
                       </Typography>
                       <TextField
                         variant="standard"
