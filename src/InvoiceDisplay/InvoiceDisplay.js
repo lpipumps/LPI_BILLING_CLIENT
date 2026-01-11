@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
@@ -8,6 +8,7 @@ import Navbar from '../Navbar/Navbar';
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField,Typography,TablePagination,Pagination} from '@mui/material'
 import {Delete,Create} from '@mui/icons-material';
 import { deleteBill, fetchbilldetails } from '../services/bill';
+import { use } from 'react';
 function InvoiceDisplay() {
     const [billDetails,setbillDetails]=useState([]);
     const [openDialog,setOpenDialog]=useState(false);
@@ -19,6 +20,15 @@ function InvoiceDisplay() {
     const [filteredBillDetails, setFilteredBillDetails] = useState([]);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
+    const location = useLocation();
+    const [checkedInvoiceNo, setCheckedInvoiceNo] = useState(null);
+
+    useEffect(() => {
+      const saved=localStorage.getItem("checkedInvoiceNo");
+      if(saved){
+        setCheckedInvoiceNo(saved);
+      }
+    }, []);
 
     const itemsPerPage = 10;
     const history=useNavigate();
@@ -226,7 +236,7 @@ const handleClearFilters = () => {
         <TableContainer>
             <Table>
 <TableHead>
-<TableRow sx={{backgroundColor:'#333',}}>
+<TableRow  sx={{backgroundColor:'#333'}}>
     <TableCell  sx={{
                   color: 'white', // White text
                   fontWeight: 'bold', // Bold font for readability
@@ -280,8 +290,13 @@ Date    </TableCell>
 </TableRow>
 </TableHead>
 <TableBody>
-    {currentBills.map((bill,index)=>(
-        <TableRow key={index} >
+    {currentBills.map((bill,index)=>{
+      return(
+        <TableRow key={bill.invoice_no} sx={{
+    backgroundColor:
+      checkedInvoiceNo === bill.invoice_no ? "#b5f2baff" : "inherit",
+    transition: "background-color 0.3s ease",
+  }}>
             <TableCell sx={{ cursor: "pointer" }} 
   onClick={() => history(`/?mode=view`, { state: { bill } })}>{bill.invoice_no}</TableCell>
             <TableCell>{bill.invoice_date}</TableCell>
@@ -297,7 +312,7 @@ Date    </TableCell>
             </TableCell>
             
         </TableRow>
-    ))}
+    )})}
      <TableRow sx={{ backgroundColor: "#f5f5f5", fontWeight: "bold" }}>
         <TableCell colSpan={4} sx={{ fontWeight: "bold", textAlign: "right" }}>Total:</TableCell>
         <TableCell sx={{ fontWeight: "bold" }}>{totalQuantity}</TableCell>
