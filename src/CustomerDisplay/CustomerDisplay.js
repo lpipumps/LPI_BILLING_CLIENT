@@ -169,7 +169,7 @@ function CustomerDisplay() {
             Customer
           </Button>
           <Button variant="contained" color="secondary" sx={{ fontSize: 16, ml: 2 }} onClick={() => history('/castingdisplay')}>
-            Casting
+            Pump
           </Button>
           <TextField
             variant="outlined"

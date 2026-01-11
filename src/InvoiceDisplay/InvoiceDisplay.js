@@ -188,7 +188,7 @@ const handleClearFilters = () => {
                 Customer
             </Button>
             <Button variant="contained" color="secondary" sx={{ fontSize: 16, ml: 2 }} onClick={()=>history('/castingdisplay')}>
-                Casting
+                Pump
             </Button>
             <TextField
   placeholder="Search by Invoice No. or Consignee Name"
@@ -257,12 +257,6 @@ Date    </TableCell>
                 }}>
         Quantity(Nos)
     </TableCell>
-    <TableCell  sx={{
-                  color: 'white', // White text
-                  fontWeight: 'bold', // Bold font for readability
-                }}>
-        Weight(Kgs)
-    </TableCell>
     <TableCell sx={{
                   color: 'white', // White text
                   fontWeight: 'bold', // Bold font for readability
@@ -294,7 +288,6 @@ Date    </TableCell>
             <TableCell>{bill.receiver_name}</TableCell>
             <TableCell>{bill.consignee_name}</TableCell>
             <TableCell>{bill.totalquantity}</TableCell>
-            <TableCell>{(parseFloat(bill.totalweight)).toFixed(2)}</TableCell>
             <TableCell>{parseFloat(bill.total_before_tax).toFixed(2)}</TableCell>
             <TableCell>{parseFloat(bill.grand_total).toFixed(2)}</TableCell>
             <TableCell>
@@ -308,7 +301,6 @@ Date    </TableCell>
      <TableRow sx={{ backgroundColor: "#f5f5f5", fontWeight: "bold" }}>
         <TableCell colSpan={4} sx={{ fontWeight: "bold", textAlign: "right" }}>Total:</TableCell>
         <TableCell sx={{ fontWeight: "bold" }}>{totalQuantity}</TableCell>
-        <TableCell sx={{ fontWeight: "bold" }}>{totalWeight.toFixed(2)}</TableCell>
         <TableCell sx={{ fontWeight: "bold" }}>{totalBeforeTax.toFixed(2)}</TableCell>
         <TableCell sx={{ fontWeight: "bold" }}>{totalGrandTotal.toFixed(2)}</TableCell>
         <TableCell></TableCell>

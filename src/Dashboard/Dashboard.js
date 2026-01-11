@@ -55,12 +55,14 @@ const getCustomYearRange = (date) => {
       try {
         const response = await fetchbilldetails();
         if (!response) throw new Error('Failed to fetch data');
+        
         const data = await response.json();
+        console.log("Fetched bill details:", data);
         const bills = data.Bill;
 
         let overallStats = { };
-        let currentFYStats = { total: 0, beforeTax: 0, gst: 0, weight: 0 };
-        let previousFYStats = { total: 0, beforeTax: 0, gst: 0, weight: 0 };
+        let currentFYStats = { total: 0, beforeTax: 0, gst: 0, quantity: 0 };
+        let previousFYStats = { total: 0, beforeTax: 0, gst: 0, quantity: 0 };
         let monthly = {};
         let monthlyDateMap = {};
 
@@ -75,41 +77,41 @@ const getCustomYearRange = (date) => {
 
           const beforeTax = parseFloat(bill.total_before_tax) || 0;
           const total = parseFloat(bill.grand_total) || 0;
-          const weight = parseFloat(bill.totalweight) || 0;
+          const quantity = (bill.totalquantity) || 0;
           const gst = total - beforeTax;
           if (!overallStats[fyd]) {
-            overallStats[fyd] = { total: 0, beforeTax: 0, gst: 0, weight: 0 };
+            overallStats[fyd] = { total: 0, beforeTax: 0, gst: 0, quantity: 0 };
           }
 
           // Overall
           overallStats[fyd].total += total;
           overallStats[fyd].beforeTax += beforeTax;
           overallStats[fyd].gst += gst;
-          overallStats[fyd].weight += weight;
+          overallStats[fyd].quantity += quantity;
           
           // FY Check
           if (isCurrentFY(fy)) {
             currentFYStats.total += total;
             currentFYStats.beforeTax += beforeTax;
             currentFYStats.gst += gst;
-            currentFYStats.weight += weight;
+            currentFYStats.quantity += quantity;
           } else {
             previousFYStats.total += total;
             previousFYStats.beforeTax += beforeTax;
             previousFYStats.gst += gst;
-            previousFYStats.weight += weight;
+            previousFYStats.quantity += quantity;
           }
 
           // Monthly
           if (!monthly[key]) {
-            monthly[key] = { total: 0, beforeTax: 0, gst: 0, weight: 0 };
+            monthly[key] = { total: 0, beforeTax: 0, gst: 0, quantity: 0 };
             monthlyDateMap[key] = keyDate;
           }
 
           monthly[key].total += total;
           monthly[key].beforeTax += beforeTax;
           monthly[key].gst += gst;
-          monthly[key].weight += weight;
+          monthly[key].quantity += quantity;
         });
 
         // Sort by date (descending) and get last 6 months
@@ -168,7 +170,7 @@ const getCustomYearRange = (date) => {
             <p>Sales Without Tax: ₹{overall[selectedYear].beforeTax.toFixed(2)}</p>
             <p>Sales With Tax: ₹{overall[selectedYear].total.toFixed(2)}</p>
             <p>Total GST: ₹{overall[selectedYear].gst.toFixed(2)}</p>
-            <p>Total Weight: {overall[selectedYear].weight.toFixed(2)} Kgs</p>
+            <p>Total Quantity: {overall[selectedYear].quantity} Nos</p>
           </div>
         )}
         </div>
@@ -178,14 +180,14 @@ const getCustomYearRange = (date) => {
         <p>Sales Without Tax: ₹{currentFY.beforeTax?.toFixed(2)}</p>
         <p>Sales With Tax: ₹{currentFY.total?.toFixed(2)}</p>
         <p>Total GST: ₹{currentFY.gst?.toFixed(2)}</p>
-        <p>Total Weight: {currentFY.weight?.toFixed(2)} Kgs</p></div>
+        <p>Total Quantity: {currentFY.quantity} Nos</p></div>
 
         <h3>Previous Financial Year</h3>
         <div className="analytics-section">
         <p>Sales Without Tax: ₹{previousFY.beforeTax?.toFixed(2)}</p>
         <p>Sales With Tax: ₹{previousFY.total?.toFixed(2)}</p>
         <p>Total GST: ₹{previousFY.gst?.toFixed(2)}</p>
-        <p>Total Weight: {previousFY.weight?.toFixed(2)} Kgs</p></div>
+        <p>Total Quantity: {previousFY.quantity} Nos</p></div>
 
         <h3>Monthly Sales</h3>
         <div style={{ marginBottom: '1rem' }}>
@@ -209,7 +211,7 @@ const getCustomYearRange = (date) => {
             <p>Without Tax: ₹{monthlySales[selectedMonth].beforeTax.toFixed(2)}</p>
             <p>With Tax: ₹{monthlySales[selectedMonth].total.toFixed(2)}</p>
             <p>GST: ₹{monthlySales[selectedMonth].gst.toFixed(2)}</p>
-            <p>Weight: {monthlySales[selectedMonth].weight.toFixed(2)} Kgs</p></div>
+            <p>Quantity: {monthlySales[selectedMonth].quantity} Nos</p></div>
           </div>
         )}
       </div>

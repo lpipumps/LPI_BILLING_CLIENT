@@ -39,9 +39,10 @@ function Casting() {
       <div><Navbar/></div>
 <div className='admin_form'>
        <div className='title'> ADD CASTING DETAILS</div>
-        <TextField variant='outlined' label="Casting Name" sx={{backgroundColor:"#ffff",borderRadius:'5px'}} value={casting_name} onChange={(e)=>setcasting_name(e.target.value)} ></TextField>
-        <TextField variant='outlined' label="Casting Weight" sx={{backgroundColor:"#ffff",borderRadius:'5px'}} value={casting_weight} onChange={(e)=>setcasting_weight(e.target.value)}></TextField>
-        <TextField variant='outlined' label="Casting HSN" sx={{backgroundColor:"#ffff",borderRadius:'5px'}} value={casting_hsn} onChange={(e)=>setcasting_hsn(e.target.value)}></TextField>
+        <TextField variant='outlined' label="Pump Name" sx={{backgroundColor:"#ffff",borderRadius:'5px'}} value={casting_name} onChange={(e)=>setcasting_name(e.target.value)} ></TextField>
+        <TextField variant='outlined' label="Pump HSN" sx={{backgroundColor:"#ffff",borderRadius:'5px'}} value={casting_hsn} onChange={(e)=>setcasting_hsn(e.target.value)}></TextField>
+        <TextField variant='outlined' label="Pump Rate" sx={{backgroundColor:"#ffff",borderRadius:'5px'}} value={casting_weight} onChange={(e)=>setcasting_weight(e.target.value)}></TextField>
+        
         
         <Button variant='outlined'  sx={{backgroundColor:"#ffff",borderRadius:'5px',borderColor:"black",color:"black",'&:hover':{backgroundColor:'#ffff',color:"black",borderColor:"black"
 
