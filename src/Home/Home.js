@@ -204,7 +204,7 @@ function Home() {
       items: invoiceItems, totalquantity: InvoiceTotalquantity,total_before_tax: invoicetotaltaxablevalue,
       roundoff: invoiceRounfoff, grand_total: invoicegrandtotal, grand_total_words: invoicetotalinwords
     };
-    console.log("Bill Details to be saved:", billDetails.items);
+    console.log("Bill Details to be saved:", billDetails);
     try {
       // Call the addnewbill service to save the bill details
       const response = await addnewbill(billDetails);
@@ -249,7 +249,7 @@ function Home() {
     }, 10000);
   }, []);
 
-  const handleInvoiceData = (items, totalQuantity, cgst, sgst, igst, cgstAmount, sgstAmount, igstAmount, totaltaxablevalue, roundoffAdjustment, totalGrandAmount, totalinwords) => {
+  const handleInvoiceData = (items, totalQuantity, totaltaxablevalue, roundoffAdjustment, totalGrandAmount, totalinwords) => {
     setInvoiceItems(items);
     setInvoiceTotalquantity(totalQuantity);
     
