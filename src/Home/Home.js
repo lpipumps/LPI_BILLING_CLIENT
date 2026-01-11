@@ -54,6 +54,7 @@ function Home() {
   const [openErrorDialog, setOpenErrorDialog] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
   const handleDialogClose = () => setOpenErrorDialog(false);
+  const [checkedInvoiceNo,setCheckedInvoiceNo]=useState(null);
   const history = useNavigate();
   const [invoiceViewDetails, setInvoiceViewDetails] = useState({
     invoice_no: billData?.invoice_no || "",
@@ -261,6 +262,11 @@ function Home() {
 
 
   };
+  const handleChecked=(invoiceNo)=>{
+    localStorage.setItem("checkedInvoiceNo",invoiceNo);
+    navigate("/invoices",{
+      state:{checkedInvoiceNo:invoiceNo}
+    });}
 
   return (
     <div>
@@ -686,6 +692,10 @@ function Home() {
       <center>
         <div className="print-button-container">
           {isViewMode ? (<>
+          <Button variant="contained" color="success" onClick={()=>handleChecked(invoiceViewDetails.invoice_no)}>
+              checked
+            </Button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <Button variant="contained" color="primary" onClick={handlePrint}>
               Print Invoice
             </Button>&nbsp;&nbsp;&nbsp;&nbsp;
