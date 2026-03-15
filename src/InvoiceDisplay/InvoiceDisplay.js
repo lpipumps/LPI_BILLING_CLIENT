@@ -23,12 +23,7 @@ function InvoiceDisplay() {
     const location = useLocation();
     const [checkedInvoiceNo, setCheckedInvoiceNo] = useState(null);
 
-    useEffect(() => {
-      const saved=localStorage.getItem("checkedInvoiceNo");
-      if(saved){
-        setCheckedInvoiceNo(saved);
-      }
-    }, []);
+    
 
     const itemsPerPage = 10;
     const history=useNavigate();
@@ -81,6 +76,10 @@ function InvoiceDisplay() {
         try {
             const response = await deleteBill(invoice_no);
             if (response) {
+              const checked=localStorage.getItem("checkedInvoiceNo");
+              if(checked===invoice_no){
+                localStorage.removeItem("checkedInvoiceNo");
+              }
                 console.log("Bill deleted successfully");
                 setOpenDialog(false);
                 setSuccessMessage("Invoice deleted Sucessfully");
@@ -236,7 +235,9 @@ const handleClearFilters = () => {
         <TableContainer>
             <Table>
 <TableHead>
-<TableRow  sx={{backgroundColor:'#333'}}>
+<TableRow  sx={{
+    backgroundColor:" #434643ff",
+  }}>
     <TableCell  sx={{
                   color: 'white', // White text
                   fontWeight: 'bold', // Bold font for readability
@@ -294,7 +295,7 @@ Date    </TableCell>
       return(
         <TableRow key={bill.invoice_no} sx={{
     backgroundColor:
-      checkedInvoiceNo === bill.invoice_no ? "#b5f2baff" : "inherit",
+       bill.checked? "#b5f2baff" : "inherit",
     transition: "background-color 0.3s ease",
   }}>
             <TableCell sx={{ cursor: "pointer" }} 

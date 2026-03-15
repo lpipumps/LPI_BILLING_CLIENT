@@ -6,7 +6,7 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Invoice from "../Invoice/Invoice";
 import Navbar from "../Navbar/Navbar";
-import { addnewbill, fetchgenBillNumber, fetchgenInvoiceNumber, generateInvoiceNumber } from "../services/bill";
+import { addnewbill, fetchgenBillNumber, fetchgenInvoiceNumber, generateInvoiceNumber,markInvoiceChecked } from "../services/bill";
 import { fetchcustomer } from "../services/Customer";
 import { fetchcasting } from "../services/Casting";
 import Dialog from '@mui/material/Dialog';
@@ -262,11 +262,13 @@ function Home() {
 
 
   };
-  const handleChecked=(invoiceNo)=>{
-    localStorage.setItem("checkedInvoiceNo",invoiceNo);
+  const handleChecked=async (invoiceNo)=>{
+    await markInvoiceChecked(invoiceNo);
     navigate("/invoices",{
       state:{checkedInvoiceNo:invoiceNo}
-    });}
+    });
+    
+    };
 
   return (
     <div>
