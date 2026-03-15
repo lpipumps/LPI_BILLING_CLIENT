@@ -80,3 +80,13 @@ export const deleteBill=async(invoice_no)=>{
 
 //     return newInvoiceNo;
 // };
+export const markInvoiceChecked=async(invoice_no)=>{
+    const encodedInvoiceNo = encodeURIComponent(invoice_no);
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/lgc/checkedinvoice/${encodedInvoiceNo}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return response;
+};
