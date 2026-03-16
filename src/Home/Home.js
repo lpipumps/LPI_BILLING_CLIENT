@@ -392,7 +392,7 @@ function Home() {
                         variant="body1"
                         sx={{ fontSize: "0.95rem", fontWeight: "bold" }}
                       >
-                        Date of Supply:
+                        Invoice of Supply:
                       </Typography>
                       <TextField
                         variant="standard"
@@ -406,7 +406,7 @@ function Home() {
                         variant="body1"
                         sx={{ fontSize: "0.95rem", fontWeight: "bold" }}
                       >
-                        Po.No. & Date:
+                        Total Inv Value:
                       </Typography>
                       <TextField
                         variant="standard"
