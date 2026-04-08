@@ -396,6 +396,7 @@ function Home() {
                       </Typography>
                       <TextField
                         variant="standard"
+                        value={isViewMode ? invoiceViewDetails.date_of_supply || "" : date_of_supply}
                         onChange={(e) => setdate_of_supply(e.target.value)}
                         InputProps={{ disableUnderline: true }}
                       ></TextField>
@@ -410,6 +411,7 @@ function Home() {
                       </Typography>
                       <TextField
                         variant="standard"
+                        value={isViewMode ? invoiceViewDetails.pono_date || "" : pono_date}
                         onChange={(e) => setpono_date(e.target.value)}
                         InputProps={{ disableUnderline: true }}
                       ></TextField>
