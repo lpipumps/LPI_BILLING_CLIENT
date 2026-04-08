@@ -392,10 +392,11 @@ function Home() {
                         variant="body1"
                         sx={{ fontSize: "0.95rem", fontWeight: "bold" }}
                       >
-                        Date of Supply:
+                        Invoice of Supply:
                       </Typography>
                       <TextField
                         variant="standard"
+                        value={isViewMode ? invoiceViewDetails.date_of_supply || "" : date_of_supply}
                         onChange={(e) => setdate_of_supply(e.target.value)}
                         InputProps={{ disableUnderline: true }}
                       ></TextField>
@@ -406,10 +407,11 @@ function Home() {
                         variant="body1"
                         sx={{ fontSize: "0.95rem", fontWeight: "bold" }}
                       >
-                        Po.No. & Date:
+                        Total Inv Value:
                       </Typography>
                       <TextField
                         variant="standard"
+                        value={isViewMode ? invoiceViewDetails.pono_date || "" : pono_date}
                         onChange={(e) => setpono_date(e.target.value)}
                         InputProps={{ disableUnderline: true }}
                       ></TextField>
