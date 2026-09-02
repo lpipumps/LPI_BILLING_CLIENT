@@ -1,6 +1,6 @@
 {
   "short_name": "LGC",
-  "name": "LGC Billing Software",
+  "name": "LPI GATEPASS",
   "icons": [
       {
           "src": "test.ico",
@@ -8,12 +8,12 @@
           "type": "image/x-icon"
       },
       {
-          "src": "desktop.png",
+          "src": "lpi.png",
           "type": "image/png",
           "sizes": "192x192"
       },
       {
-          "src": "desktop.png",
+          "src": "lpi.png",
           "type": "image/png",
           "sizes": "512x512"
       }
